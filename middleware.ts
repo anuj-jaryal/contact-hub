@@ -1,17 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  // Allow homepage (so your message page can show)
-  if (pathname === "/") {
-    return NextResponse.next();
-  }
-
-  // Redirect everything else to homepage
   const url = request.nextUrl.clone();
-  url.pathname = "/";
-  return NextResponse.redirect(url);
+  url.hostname = 'digitaltoolcrate.com';
+  return NextResponse.redirect(url, 301);
 }
 
 // Avoid running on static files
